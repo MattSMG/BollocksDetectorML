@@ -26,15 +26,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# === Load Models ===
-logger.info("Loading models...")
+# ULTRA-LIGHT MODELS (fits in 512MB RAM)
+logger.info("Loading ultra-light models...")
 
-# Model A: DistilBERT (mniejszy, szybszy)
-tokenizer_a = AutoTokenizer.from_pretrained("distilbert-base-uncased")
-model_a = AutoModelForMaskedLM.from_pretrained("distilbert-base-uncased")
+# Model A: prajjwal1/bert-tiny (~17MB)
+tokenizer_a = AutoTokenizer.from_pretrained("prajjwal1/bert-tiny")
+model_a = AutoModelForMaskedLM.from_pretrained("prajjwal1/bert-tiny")
 model_a.eval()
 
-# Model B: BERT-tiny (bardzo mały, do cross-perplexity)
+# Model B: prajjwal1/bert-mini (~45MB)  
+tokenizer_b = AutoTokenizer.from_pretrained("prajjwal1/bert-mini")
+model_b = AutoModelForMaskedLM.from_pretrained("prajjwal1/bert-mini")
+model_b.eval()
+
+logger.info("Ultra-light models loaded successfully!")
 tokenizer_b = AutoTokenizer.from_pretrained("prajjwal1/bert-tiny")
 model_b = AutoModelForMaskedLM.from_pretrained("prajjwal1/bert-tiny")
 model_b.eval()
