@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: bollocks-detector-ml
+    env: docker
+    dockerfilePath: ./ml-backend/Dockerfile
+    dockerContext: ./ml-backend
+    envVars:
+      - key: PORT
+        value: 8000
